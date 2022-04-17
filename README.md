@@ -24,6 +24,15 @@
 ```
 需要数据集请私信xiong257246@outlook.com。  
 
+# 数据预处理
+embedding层  
+1.CBOW  
+2.skip gram  
+3.Fast Text
+
+
+
+
 # 实验结果 
 TODO
 
