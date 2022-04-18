@@ -1,5 +1,6 @@
-/data/class.txt
-/data/eval_data.json
-/data/train_data.json
+/Data/Dataset/class.txt
+/Data/Dataset/eval_data.json
+/Data/Dataset/train_data.json
 
 /.idea
+/Data/Embedding/sgns.weibo.word.txt

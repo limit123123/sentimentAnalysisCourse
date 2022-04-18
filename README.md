@@ -25,10 +25,7 @@
 需要数据集请私信xiong257246@outlook.com。  
 
 # 数据预处理
-embedding层  
-1.CBOW  
-2.skip gram  
-3.Fast Text
+使用基于
 
 
 
@@ -44,7 +41,16 @@ TODO
 
 # 实验
 ## CNN文本分类
+### CNN文本分类内容
 对应参考文献[1]  
+### CNN文本分类实验结果
+|模型|Accuracy|
+|:---:|:---:|
+|CNN|71.45%|
+|SGNS+CNN|72.85%|
+
+
+##
 
 
 ## 基于Bert预训练模型
@@ -55,11 +61,11 @@ TODO
 
 # 致谢
 部分内容参考  
-[Chinese-Text-Classification-Pytorch](https://github.com/649453932/Chinese-Text-Classification-Pytorch)
-[Bert-Chinese-Text-Classification-Pytorch](https://github.com/649453932/Bert-Chinese-Text-Classification-Pytorch)
-
+[Chinese-Text-Classification-Pytorch](https://github.com/649453932/Chinese-Text-Classification-Pytorch)  
+[Bert-Chinese-Text-Classification-Pytorch](https://github.com/649453932/Bert-Chinese-Text-Classification-Pytorch)  
+[Chinese-Word-Vectors](https://github.com/Embedding/Chinese-Word-Vectors)
 # 参考文献
-[1] Convolutional Neural Networks for Sentence Classification
+[1] Convolutional Neural Networks for Sentence Classification  
 [2] BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding  
 
 
