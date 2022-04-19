@@ -15,8 +15,9 @@ class config(object):
         self.embedding_path = "../Data/Embedding/"
         self.train_data = self.data_path + "train_data.json"
         self.eval_data = self.data_path + "eval_data.json"
-        self.test_data = self.data_path + ""
+        self.test_data = self.data_path + "test_data.json"
         self.model_name = "TextCNN"
+        self.predict_save = "./test/predict.csv"
 
         # 分类类别设置
         self.class_data = [x.strip() for x in open(self.data_path + 'class.txt', encoding='utf-8').readlines()]

@@ -1,6 +1,10 @@
 /Data/Dataset/class.txt
 /Data/Dataset/eval_data.json
 /Data/Dataset/train_data.json
+/Data/Dataset/test_data.json
 
 /.idea
 /Data/Embedding/sgns.weibo.word.txt
+
+
+/CNN/train
