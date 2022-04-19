@@ -1,10 +1,8 @@
 import json
-
 import numpy as np
 import torch
-from transformers import BertModel, BertTokenizer
 from tqdm import tqdm
-
+import jieba
 
 PAD = '<PAD>'
 UNK = '<UNK>'
@@ -17,13 +15,20 @@ def build_dataset(config,data_path):
     """
     labelMap = {'positive':1,'negative':2,'neutral':0}
     contents = []
+    if config.token == 'word':
+        for word in config.vocab:
+            jieba.add_word(word)
     with open(data_path, 'r', encoding='UTF-8') as f:
         dataAll = json.load(f)
         for data in tqdm(dataAll):
             content = data['content'].strip()
             label = labelMap[data['label']]
-            # 获取所有字
-            token = [word for word in content]
+            if config.token == 'character':
+                # 基于字切分
+                token = [word for word in content]
+            else:
+                # 基于词切分
+                token = list(jieba.cut(content,cut_all=False))
             seq_len = len(token)
             if seq_len < config.padding_size:
                 token.extend([PAD] * (config.padding_size - len(token)))

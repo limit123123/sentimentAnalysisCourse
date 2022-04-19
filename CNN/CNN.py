@@ -41,8 +41,9 @@ class config(object):
         self.padding_size = 32                     # 每句话处理成的长度,长切短补
 
         # embedding词嵌入部分
-        self.embedding = 'Random'
-        if self.embedding != 'Random':
+        self.embedding = 'NotRandom'
+        if self.embedding == 'NotRandom':
+            self.token = 'word'  # 基于词级别做切分
             embedding_model = word2vec.load(self.embedding_path+"sgns.weibo.word.txt")       # 词嵌入模型
             self.vocab = embedding_model.vocab                                               # 词表
             self.vocab_dict = embedding_model.vocab_hash                                     # 词表对应的编号
@@ -54,6 +55,7 @@ class config(object):
             self.embedding_size = self.vectors.shape[1]                                      # 字处理成的向量的维度
             self.vocab_size = self.vectors.shape[0]                                          # 词表的大小
         else:
+            self.token = 'character'                                                         # 基于字的级别做切分
             self.embedding_size = 300                                                        # 字向量embedding的大小
             self.vocab_dict = {}                                                             # 词对应的编号
             with open(self.train_data, 'r', encoding='UTF-8') as f:
