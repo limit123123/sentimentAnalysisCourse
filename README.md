@@ -6,18 +6,18 @@
 ```json
 [
   {
-    "id": 1,
-    "content": "天使",
+    "id": 22,
+    "content": "武汉挺[抱抱]",
     "label": "positive"
   },
   {
-    "id": 2,
-    "content": "致敬[心][心]小凡也要做好防护措施哦//@Mr_凡先生:致敬[心]大家出门记得戴口罩",
+    "id": 23,
+    "content": "[doge][doge][doge][爱你][爱你][爱你]",
     "label": "positive"
   },
   {
-    "id": 3,
-    "content": "[中国赞][中国赞][中国赞]",
+    "id": 24,
+    "content": "会好起来的???还想去武汉旅游呢！",
     "label": "positive"
   }
 ]
@@ -35,7 +35,7 @@ TODO
 
 |模型|Accuracy|
 |:---:|:---:|
-|CNN|%|
+|CNN|75.45%|
 |Bert|%|
 
 
@@ -44,7 +44,7 @@ TODO
 ### CNN文本分类内容
 CNN文本分类的实验部分主要参考Kim在2014年的Convolutional Neural Networks for Sentence Classification 论文，
 模型结构如Figure 1所示。  
-![Figure 1](README/images/CnnFigure1.png)
+![Figure 1](README/images/CnnFigure1.png)  
 CNN的模型主要由四层组成：  
 <ol>
 <li>第一层：Embedding层，将每个字或词映射为一个词向量。</li>
@@ -55,12 +55,13 @@ CNN的模型主要由四层组成：
 
 ### CNN文本分类实验结果
 本部分基于词的粒度、字的粒度进行词嵌入。如下表所示，使用基于字的粒度时，CNN的精度为70%左右，
-而再使用基于SGNS预训练的embedding模型时，以词为粒度，此时精度大约为75.25%，相较于字粒度随机化embedding的方式，
+而再使用基于SGNS预训练的embedding模型时，以词为粒度，此时精度大约为75.45%，相较于字粒度随机化embedding的方式，
 提升了大约5%左右的精度。  
 |模型|Accuracy|
 |:---:|:---:|
-|CNN|71.45%|
-|SGNS+CNN|75.25%|
+|CNN|70.25%|
+|SGNS+CNN|75.45%|  
+
 
 
 ## RNN文本分类
@@ -77,6 +78,7 @@ CNN的模型主要由四层组成：
 [Chinese-Text-Classification-Pytorch](https://github.com/649453932/Chinese-Text-Classification-Pytorch)  
 [Bert-Chinese-Text-Classification-Pytorch](https://github.com/649453932/Bert-Chinese-Text-Classification-Pytorch)  
 [Chinese-Word-Vectors](https://github.com/Embedding/Chinese-Word-Vectors)
+
 # 参考文献
 [1] Convolutional Neural Networks for Sentence Classification  
 [2] BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding  
