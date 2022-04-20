@@ -1,19 +1,20 @@
 from transformers import BertTokenizer
 import torch
 import torch.nn as nn
-from transformers import BertModel, BertConfig
+import torch.nn.functional as F
+from transformers import BertModel, AutoConfig,AutoModel,BertConfig
 
 class config(object):
     def __init__(self):
         # 定义相关路径
         self.tokenizer_path = '../BertPretrained'                   # Bert的tokenizer路径
         self.model_path = '../BertPretrained'                       # Bert模型路径
-        self.model_name = 'bert-base-chinese'                        # Bert模型的名称
+        self.model_name = 'BertCNN'                        # Bert模型的名称
         self.data_path = '../Data/Dataset/'                          # 数据的顶层路径
         self.train_data = self.data_path + 'train_data.json'         # 训练集
         self.eval_data = self.data_path + 'eval_data.json'           # 验证集
         self.test_data = self.data_path + 'test_data.json'           # 测试集
-        self.predict_save = "./test/predictBert.csv"                     # 定义测试集结果保存路径
+        self.predict_save = "./test/predictBertCNN.csv"                     # 定义测试集结果保存路径
         self.model_saved_path = './models/'+self.model_name+'.ckpt'  # 定义模型保存的路径及名称
         self.model_config_path = self.model_path + '/config.json'     # 定义模型的相关配置文件路径
 
@@ -34,23 +35,38 @@ class config(object):
         # 读入bert tokenizer
         self.tokenizer = BertTokenizer.from_pretrained(self.tokenizer_path)
 
+        # CNN网络结构设置
+        self.filter_size = (2, 3, 4)                 # 卷积核size的设置
+        self.filter_num = 256                        # 卷积核输出的channel数
+        self.dropout = 0.3
 
 
-class Bert(nn.Module):
+class BertCNN(nn.Module):
 
     def __init__(self, config):
-        super(Bert, self).__init__()
+        super(BertCNN, self).__init__()
         bertConfig = BertConfig.from_json_file(config.model_config_path)
         # 读入bert model
         self.bert = BertModel.from_pretrained(config.model_path, config=bertConfig)
         for param in self.bert.parameters():
             param.requires_grad = True
-        self.Fc = nn.Linear(config.hidden_size, config.class_len)
+        self.Convs = nn.ModuleList([nn.Conv2d(1, config.filter_num, (k, config.hidden_size)) for k in config.filter_size])
+        self.Dropout = nn.Dropout(config.dropout)
+        self.Fc = nn.Linear(config.filter_num * len(config.filter_size), config.class_len)
+
 
     def forward(self, x):
         context = x[0]
         mask = x[2]
         output = self.bert(context.long(), attention_mask=mask)
-        # _, pooled = self.bert(context.long(), attention_mask=mask)
-        out = self.Fc(output['pooler_output'])
-        return out
+        output = output['last_hidden_state']                 # [batch_size, seq_len, hidden_size]
+        output = output.unsqueeze(1)
+        outputList = []
+        for Conv in self.Convs:
+            outputConv = Conv(output).squeeze(3)
+            outputMaxpool = F.max_pool1d(outputConv,outputConv.size(2)).squeeze(2)
+            outputList.append(outputMaxpool)
+        output = torch.cat(outputList,dim=1)
+        output = self.Dropout(output)
+        output = self.Fc(output)
+        return output
