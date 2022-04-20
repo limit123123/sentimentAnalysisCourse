@@ -25,18 +25,18 @@
 需要数据集请私信xiong257246@outlook.com。  
 
 # 数据预处理
-使用基于
-
-
+使用基于字向量的随机映射和基于SGNS的词向量映射。
 
 
 # 实验结果 
-TODO
 
-|模型|Accuracy|
-|:---:|:---:|
-|CNN|75.45%|
-|Bert|%|
+
+|模型|Accuracy|F1-Score|
+|:---:|:---:|:---:|
+|CNN|76.25%|0.7412|
+|LSTM|73.3%|0.6826|
+|Bert|81.5%|0.7941|
+
 
 
 # 实验
@@ -54,26 +54,38 @@ CNN的模型主要由四层组成：
 </ol>
 
 ### CNN文本分类实验结果
-本部分基于词的粒度、字的粒度进行词嵌入。如下表所示，使用基于字的粒度时，CNN的精度为70%左右，
-而再使用基于SGNS预训练的embedding模型时，以词为粒度，此时精度大约为75.45%，相较于字粒度随机化embedding的方式，
-提升了大约5%左右的精度。  
-|模型|Accuracy|
-|:---:|:---:|
-|CNN|70.25%|
-|SGNS+CNN|75.45%|  
+本部分基于词的粒度、字的粒度进行词嵌入。  
+使用基于字的粒度时，CNN的精度为70%左右；  
+使用基于SGNS预训练的embedding模型时，以词为粒度，精度为75.45%左右，相较于字粒度随机化embedding的方式， 提升了大约5%左右的精度。      
+
+|模型|Accuracy|F1-Score|
+|:---:|:---:|:---:|  
+|CNN|72.3%|0.6988|
+|SGNS+CNN|76.25%|0.7412|  
 
 
 
 ## RNN文本分类
+### 基于LSTM文本分类
+本部分基于词的粒度、字的粒度进行词嵌入。  
+使用基于字的粒度时，LSTM的精度为71.55%。    
+使用基于SGNS预训练的embedding模型时，以词为粒度，精度为73.3%左右，相较于字粒度随机化embedding的方式， 提升了大约5%左右的精度。  
 
+|模型|Accuracy|F1-Score|  
+|:---:|:---:|:---:|  
+|LSTM|71.15%|0.6826|
+|SGNS+LSTM|73.3%|0.7111|  
 
 ## 基于Bert预训练模型
 
+|模型|Accuracy|F1-Score|  
+|:---:|:---:|:---:|  
+|Bert|81.5%|0.7941|
 
 
 
 
-# 致谢
+# 致谢    
 部分内容参考  
 [Chinese-Text-Classification-Pytorch](https://github.com/649453932/Chinese-Text-Classification-Pytorch)  
 [Bert-Chinese-Text-Classification-Pytorch](https://github.com/649453932/Bert-Chinese-Text-Classification-Pytorch)  
