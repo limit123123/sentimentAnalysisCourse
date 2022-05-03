@@ -16,7 +16,7 @@ class config(object):
         self.eval_data = self.data_path + "eval_data.json"
         self.test_data = self.data_path + "test_data.json"
         self.model_name = "TextRNN"
-        self.predict_save = "./test/predict.csv"
+        self.predict_save = "./test/predictRNN.csv"
 
         # 分类类别设置
         self.class_data = [x.strip() for x in open(self.data_path + 'class.txt', encoding='utf-8').readlines()]
@@ -28,7 +28,7 @@ class config(object):
         self.dropout = 0.3  # 随机丢弃
 
         # 训练设置
-        self.device = torch.device('cuda:2' if torch.cuda.is_available() else 'cpu')  # 设备
+        self.device = torch.device('cuda:1' if torch.cuda.is_available() else 'cpu')  # 设备
         # self.device = torch.device('cpu')  # 设备
         self.maxiter_without_improvement = 1000    # 若超过1000轮效果仍然没有提升，则提前结束训练
         self.epoch = 200                           # 训练轮数
@@ -36,11 +36,11 @@ class config(object):
 
 
         # dataloader部分
-        self.batch_size = 128                      # 每次取出的数据的量
+        self.batch_size = 256                      # 每次取出的数据的量
         self.padding_size = 32                     # 每句话处理成的长度,长切短补
 
         # embedding词嵌入部分
-        self.embedding = 'Random'
+        self.embedding = 'NotRandom'
         if self.embedding == 'NotRandom':
             self.token = 'word'  # 基于词级别做切分
             embedding_model = word2vec.load(self.embedding_path + "sgns.weibo.word.txt")  # 词嵌入模型
@@ -85,8 +85,8 @@ class RNN(nn.Module):
     def forward(self, x):
         x, _ = x                             # _为seq_len
         output = self.Embedding(x)           # output.shape [batch_size, seq_len, Embeding] = [batch_size, 32, 300]
-        output, _ = self.RNN(output)        # output.shape [batch_size, seq_len, 2*hidden_size] = [batch_size, 32, 64]
-        output = self.Fc(output[:, -1, :])  # 取最后时刻的隐藏状态 hidden state
+        output, _ = self.RNN(output)         # output.shape [batch_size, seq_len, 2*hidden_size] = [batch_size, 32, 64]
+        output = self.Fc(output[:, -1, :])   # 取最后时刻的隐藏状态 hidden state
         return output
 
 
