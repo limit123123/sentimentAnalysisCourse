@@ -16,7 +16,7 @@ class config(object):
         self.eval_data = self.data_path + "eval_data.json"
         self.test_data = self.data_path + "test_data.json"
         self.model_name = "TextLSTM"
-        self.predict_save = "./test/predict.csv"
+        self.predict_save = "./test/predictLSTM.csv"
 
         # 分类类别设置
         self.class_data = [x.strip() for x in open(self.data_path + 'class.txt', encoding='utf-8').readlines()]
@@ -28,7 +28,7 @@ class config(object):
         self.dropout = 0.3  # 随机丢弃
 
         # 训练设置
-        self.device = torch.device('cuda:2' if torch.cuda.is_available() else 'cpu')  # 设备
+        self.device = torch.device('cuda:1' if torch.cuda.is_available() else 'cpu')  # 设备
         # self.device = torch.device('cpu')  # 设备
         self.maxiter_without_improvement = 1000    # 若超过1000轮效果仍然没有提升，则提前结束训练
         self.epoch = 200                           # 训练轮数
