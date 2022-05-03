@@ -1,14 +1,40 @@
+
+/.idea
+
 /Data/Dataset/class.txt
 /Data/Dataset/eval_data.json
 /Data/Dataset/train_data.json
 /Data/Dataset/test_data.json
-
-/.idea
 /Data/Embedding/sgns.weibo.word.txt
 
 
 /CNN/train
+/CNN/__pycache__
+/CNN/jieba.cache
+/CNN/test
 
-/BertPretrained
 
+
+/Bert/__pycache__
+/Bert/pretrained
+/Bert/models
+/Bert/test
+
+
+/DeBerta/test
+
+
+/LSTM/__pycache__
+/LSTM/test
+/LSTM/train
+
+/RNN/__pycache__
+/RNN/train
+/RNN/test
+
+
+/RoBerta/outputs
+/RoBerta/pretrained
+/RoBerta/pretrainedModel
+/RoBerta/test
 
