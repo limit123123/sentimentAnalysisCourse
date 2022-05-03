@@ -6,8 +6,8 @@ from transformers import BertModel, BertConfig
 class config(object):
     def __init__(self):
         # 定义相关路径
-        self.tokenizer_path = '../BertPretrained'                   # Bert的tokenizer路径
-        self.model_path = '../BertPretrained'                       # Bert模型路径
+        self.tokenizer_path = './pretrained'                   # Bert的tokenizer路径
+        self.model_path = './pretrained'                       # Bert模型路径
         self.model_name = 'bert-base-chinese'                        # Bert模型的名称
         self.data_path = '../Data/Dataset/'                          # 数据的顶层路径
         self.train_data = self.data_path + 'train_data.json'         # 训练集
@@ -22,7 +22,7 @@ class config(object):
         self.class_len = len(self.class_data)                        # 分类类别数
 
         # 训练设置
-        self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')  # 设备
+        self.device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')  # 设备
         self.maxiter_without_improvement = 1000                      # 若超过1000轮效果仍然没有提升，则提前结束训练
         self.epoch = 200                                             # 训练轮数
         self.learning_rate = 1e-3                                    # 学习率

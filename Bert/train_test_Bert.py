@@ -94,7 +94,7 @@ def test(config,model, test_iter):
     end_time = time.time()
     print("Predict Time : {} s".format(((float)(end_time - start_time))))
     predict_result = np.column_stack([test_iter.ids, predict_all])
-    np.savetxt(config.predict_save, predict_result, delimiter=',')
+    np.savetxt(config.predict_save, predict_result.astype(int), delimiter=',', fmt='%d,%d',encoding='utf-8')
 
 
 
