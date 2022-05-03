@@ -1,12 +1,12 @@
 
 /.idea
-
+/Data/__pycache__/
 /Data/Dataset/class.txt
 /Data/Dataset/eval_data.json
 /Data/Dataset/train_data.json
 /Data/Dataset/test_data.json
 /Data/Embedding/sgns.weibo.word.txt
-
+/Data/Embedding/sgns.weibo.word
 
 /CNN/train
 /CNN/__pycache__

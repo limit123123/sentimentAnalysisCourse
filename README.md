@@ -38,6 +38,7 @@
 |RNN|72.95%|0.7073|SGNS+BiRNN|
 |LSTM|73.3%|0.6826|SGNS+BiLSTM|
 |Bert|81.5%|0.7941|Bert|
+|DeBerta|83.1%|0.802|DeBerta|
 
 
 
@@ -95,9 +96,9 @@ CNN的模型主要由四层组成：
 |:---:|:---:|:---:|  
 |Bert|81.5%|0.7941|
 |BertCNN|79.95%|0.7822|
+|DeBerta|83.1%|0.802|DeBerta|
 
-
-
+DeBerta使用K折交叉验证，K=5.  
 
 # 致谢    
 部分内容参考  
