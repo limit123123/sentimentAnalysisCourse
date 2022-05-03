@@ -17,7 +17,7 @@ class config(object):
         self.eval_data = self.data_path + "eval_data.json"
         self.test_data = self.data_path + "test_data.json"
         self.model_name = "TextCNN"
-        self.predict_save = "./test/predict.csv"
+        self.predict_save = "./test/predictCNN.csv"
 
         # 分类类别设置
         self.class_data = [x.strip() for x in open(self.data_path + 'class.txt', encoding='utf-8').readlines()]
@@ -28,7 +28,7 @@ class config(object):
         self.filter_num = 256                      # 卷积核输出的channel数
 
         # 训练设置
-        self.device = torch.device('cuda:2' if torch.cuda.is_available() else 'cpu')  # 设备
+        self.device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')  # 设备
         # self.device = torch.device('cpu')  # 设备
         self.dropout = 0.3                         # 随机丢弃
         self.maxiter_without_improvement = 1000    # 若超过1000轮效果仍然没有提升，则提前结束训练

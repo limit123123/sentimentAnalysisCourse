@@ -7,7 +7,6 @@ from train_test_CNN import test
 import os
 
 if __name__ == '__main__':
-    os.environ['CUDA_LAUNCH_BLOCKING'] = '1'
     configCNN = config()
     test_data = dataLoader.build_dataset_test(configCNN,configCNN.test_data)
     testDataLoader = dataLoader.DataLoaderTest(test_data,configCNN)
